@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drew Connell | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111827; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Design Tokens ── */
+    :root {
+      --navy:       #1e3a5f;
+      --blue:       #2563eb;
+      --blue-light: #eff6ff;
+      --gray:       #6b7280;
+      --border:     #e5e7eb;
+      --bg-soft:    #f9fafb;
+      --radius:     12px;
+      --max-w:      1100px;
+      --transition: 0.2s ease;
+    }
+
+    /* ── Utility ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 80px 0; }
+    .section-alt { background: var(--bg-soft); }
+    .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+    .section-title { font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+    .section-subtitle { font-size: 1.05rem; color: var(--gray); max-width: 560px; margin-bottom: 3rem; }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px; max-width: var(--max-w); margin: 0 auto;
+    }
+    .nav-brand { font-size: 1.1rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray); transition: color var(--transition); }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: #fff !important; padding: 0.45rem 1.1rem; border-radius: 8px; transition: background var(--transition) !important; }
+    .nav-cta:hover { background: var(--navy) !important; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center; padding-top: 64px;
+      background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 60%);
+    }
+    .hero-inner {
+      display: flex; align-items: center; gap: 5rem;
+      padding: 4rem 2rem; max-width: var(--max-w); margin: 0 auto; width: 100%;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-block; background: var(--blue-light); color: var(--blue);
+      font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.8rem;
+      border-radius: 20px; margin-bottom: 1.25rem; letter-spacing: 0.02em;
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; color: var(--navy);
+      line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1rem;
+    }
+    .hero-title { font-size: 1.15rem; color: var(--gray); margin-bottom: 1.75rem; font-weight: 400; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.7rem 1.5rem; border-radius: 8px; font-size: 0.9rem;
+      font-weight: 600; transition: all var(--transition); cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--navy); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,99,235,0.35); }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--border); }
+    .btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+
+    /* ── Avatar ── */
+    .hero-avatar-wrap { flex-shrink: 0; }
+    .avatar-ring {
+      width: 280px; height: 280px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 20px 60px rgba(37,99,235,0.25); overflow: hidden;
+    }
+    .avatar-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+    .avatar-initials { font-size: 5rem; font-weight: 700; color: rgba(255,255,255,0.95); letter-spacing: -0.03em; user-select: none; }
+
+    /* ── About ── */
+    #about .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-copy p { color: var(--gray); margin-bottom: 1rem; font-size: 1rem; }
+    .about-copy p span { color: var(--navy); font-weight: 600; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .stat-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; transition: box-shadow var(--transition); }
+    .stat-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .stat-number { font-size: 1.75rem; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
+    .stat-label { font-size: 0.85rem; color: var(--gray); }
+
+    /* ── Featured Card ── */
+    .featured-card {
+      position: relative; background: linear-gradient(135deg, #f0f6ff 0%, #e8f0fe 100%);
+      border: 1.5px solid #bfdbfe; border-radius: var(--radius);
+      padding: 2rem 2.25rem; margin-bottom: 1.75rem;
+    }
+    .featured-badge {
+      display: inline-block; background: var(--blue); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.2rem 0.65rem;
+      border-radius: 20px; margin-bottom: 1rem;
+    }
+    .featured-inner { display: flex; gap: 1.5rem; align-items: flex-start; }
+    .featured-logo {
+      width: 52px; height: 52px; border-radius: 12px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .featured-content { flex: 1; }
+    .featured-title { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+    .featured-subtitle { font-size: 0.82rem; color: var(--blue); font-weight: 600; margin-bottom: 0.75rem; }
+    .featured-desc { font-size: 0.95rem; color: var(--gray); line-height: 1.65; }
+
+    /* ── Projects ── */
+    #projects .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+    .project-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem; transition: all var(--transition); display: flex; flex-direction: column; gap: 1rem;
+    }
+    .project-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); transform: translateY(-2px); border-color: var(--blue); }
+    .project-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--blue-light); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .project-title { font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+    .project-period { font-size: 0.8rem; color: var(--gray); margin-top: -0.6rem; }
+    .project-desc { font-size: 0.95rem; color: var(--gray); flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { font-size: 0.75rem; font-weight: 500; background: var(--bg-soft); color: var(--navy); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--border); }
+
+    /* ── Skills ── */
+    #skills .skills-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .skill-group-title { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); margin-bottom: 1rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+    .skill-tag {
+      font-size: 0.88rem; font-weight: 500; background: #fff; color: var(--navy);
+      padding: 0.45rem 1rem; border-radius: 8px; border: 1.5px solid var(--border);
+      transition: all var(--transition);
+    }
+    .skill-tag:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+
+    /* ── Resume ── */
+    #resume { background: var(--navy); color: #fff; text-align: center; }
+    #resume .section-label { color: rgba(255,255,255,0.5); }
+    #resume .section-title { color: #fff; }
+    #resume .section-subtitle { color: rgba(255,255,255,0.65); margin-left: auto; margin-right: auto; }
+    .resume-card {
+      display: inline-flex; align-items: center; gap: 1.25rem;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius); padding: 1.5rem 2.5rem; margin-bottom: 2rem;
+      transition: background var(--transition);
+    }
+    .resume-card:hover { background: rgba(255,255,255,0.12); }
+    .resume-icon { font-size: 2rem; }
+    .resume-info { text-align: left; }
+    .resume-name { font-weight: 600; font-size: 1rem; }
+    .resume-meta { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .btn-white {
+      background: #fff; color: var(--navy); padding: 0.75rem 1.75rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center;
+      gap: 0.5rem; transition: all var(--transition);
+    }
+    .btn-white:hover { background: #f0f6ff; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+    /* ── Contact ── */
+    #contact .contact-grid { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .contact-card {
+      display: flex; align-items: center; gap: 1rem; background: #fff;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      padding: 1.25rem 1.75rem; transition: all var(--transition);
+      min-width: 0; flex: 1;
+    }
+    .contact-card:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(37,99,235,0.1); transform: translateY(-2px); }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px; background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-text { min-width: 0; }
+    .contact-label { font-size: 0.75rem; color: var(--gray); font-weight: 500; margin-bottom: 0.15rem; }
+    .contact-value { font-size: 0.95rem; font-weight: 600; color: var(--navy); overflow-wrap: break-word; word-break: break-all; }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; }
+    footer p { font-size: 0.85rem; color: var(--gray); }
+    footer a { color: var(--blue); font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .hero-inner { flex-direction: column-reverse; gap: 2.5rem; text-align: center; }
+      .hero-actions { justify-content: center; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      #projects .projects-grid { grid-template-columns: 1fr; }
+      #skills .skills-wrapper { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .avatar-ring { width: 200px; height: 200px; }
+      .avatar-initials { font-size: 3.5rem; }
+      .featured-inner { flex-direction: column; }
+    }
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .section { padding: 60px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">Drew Connell</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="Drew_Connell_Resume.pdf" download class="nav-cta">Resume ↓</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-badge">Open to Opportunities</span>
+        <h1 class="hero-name">Drew<br/>Connell</h1>
+        <p class="hero-title">Applied Mathematics &amp; Computer Science Student<br/>
+          Co-Founder, View LLC &nbsp;·&nbsp; UW–Stout, Graduating Winter 2028</p>
+        <div class="hero-actions">
+          <a href="Drew_Connell_Resume.pdf" download class="btn btn-primary">↓&nbsp; Download Resume</a>
+          <a href="#projects" class="btn btn-outline">View Projects →</a>
+        </div>
+      </div>
+      <div class="hero-avatar-wrap">
+        <div class="avatar-ring">
+          <img src="headshot.jpg" alt="Drew Connell"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <span class="avatar-initials" style="display:none;">DC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section section-alt">
+    <div class="container">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Driven by curiosity,<br/>built for results.</h2>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>I'm an <span>Applied Mathematics &amp; Computer Science</span> student at the <span>University of Wisconsin–Stout</span>, concentrating in Artificial Intelligence Integration. I maintain a <span>3.44 GPA</span> and am on track to <span>graduate a semester early</span> in Winter 2028.</p>
+          <p>I'm the <span>Co-Founder of View LLC</span>, a digital media and growth-focused company where I oversee content strategy, branding, and client operations — turning ideas into measurable results.</p>
+          <p>I also competed collegiately as a <span>goalkeeper</span> for UW–Stout Men's Soccer during my first two years, an experience that sharpened my discipline, composure under pressure, and ability to lead a team.</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">3.44</div>
+            <div class="stat-label">GPA at UW–Stout</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2026</div>
+            <div class="stat-label">View LLC Founded</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">Yrs. Professional Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" style="font-size:1.3rem;">Win '28</div>
+            <div class="stat-label">Graduation (1 semester early)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">What I've Built</h2>
+      <p class="section-subtitle">A selection of entrepreneurial and technical projects that demonstrate my range and initiative.</p>
+
+      <!-- Featured Highlight -->
+      <div class="featured-card">
+        <div class="featured-badge">Featured</div>
+        <div class="featured-inner">
+          <div class="featured-logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+          </div>
+          <div class="featured-content">
+            <div class="featured-title">Google for Startups — Gemini API Sprints</div>
+            <p class="featured-desc" style="margin-top:0.4rem;">Participated in Google for Startups' Gemini API Sprints — a hands-on program bringing together early-stage founders and builders to develop AI-powered products using Google's Gemini API. Gained direct exposure to Google's startup ecosystem and cutting-edge AI tools.</p>
+            <div class="project-tags" style="margin-top:0.75rem;">
+              <span class="tag">Google for Startups</span>
+              <span class="tag">Gemini API</span>
+              <span class="tag">AI / LLMs</span>
+              <span class="tag">Founder Program</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-icon">🚀</div>
+          <div>
+            <div class="project-title">View LLC</div>
+            <div class="project-period">2026 – Present</div>
+          </div>
+          <p class="project-desc">Co-founded and operate a digital media and growth-focused LLC. Responsible for developing content workflows, analyzing performance metrics, and coordinating branding, client communication, and overall business operations.</p>
+          <div class="project-tags">
+            <span class="tag">Digital Media</span>
+            <span class="tag">Content Strategy</span>
+            <span class="tag">Operations</span>
+            <span class="tag">Branding</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">📦</div>
+          <div>
+            <div class="project-title">Amazon FBA Storefront</div>
+            <div class="project-period">2024 – 2025</div>
+          </div>
+          <p class="project-desc">Launched and managed an Amazon FBA storefront from end to end. Conducted in-depth market and competitor research to identify profitable niches, managed inventory logistics, and optimized pricing strategies to maximize margins.</p>
+          <div class="project-tags">
+            <span class="tag">E-Commerce</span>
+            <span class="tag">Market Research</span>
+            <span class="tag">Inventory Management</span>
+            <span class="tag">Pricing Strategy</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🗂️</div>
+          <div>
+            <div class="project-title">Warehouse Bin-Location System</div>
+            <div class="project-period">Volvo of Lisle · 2021 – Present</div>
+          </div>
+          <p class="project-desc">Designed and implemented a bin-location tracking system for automotive parts inventory at a high-volume dealership. The system improved order fulfillment efficiency and reduced lookup times across the shipping and receiving team.</p>
+          <div class="project-tags">
+            <span class="tag">Systems Design</span>
+            <span class="tag">Logistics</span>
+            <span class="tag">Process Improvement</span>
+          </div>
+        </div>
+
+        <div class="project-card" style="border-style: dashed; background: var(--bg-soft); justify-content: center; align-items: center; min-height: 220px;">
+          <div style="text-align:center; color: var(--gray);">
+            <div style="font-size:2rem; margin-bottom:0.75rem;">＋</div>
+            <div style="font-weight: 600; color: var(--navy); margin-bottom:0.3rem;">More Coming Soon</div>
+            <div style="font-size:0.88rem;">Currently building new projects — check back soon or view my GitHub.</div>
+            <a href="https://github.com/jdcon31" target="_blank" style="display:inline-block; margin-top:1rem; color:var(--blue); font-size:0.88rem; font-weight:600;">github.com/jdcon31 →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <p class="section-label">Skills</p>
+      <h2 class="section-title">What I Work With</h2>
+      <p class="section-subtitle">A mix of technical tools and professional competencies developed through academics, collegiate athletics, and entrepreneurship.</p>
+      <div class="skills-wrapper">
+        <div>
+          <div class="skill-group-title">Technical</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">HTML / CSS</span>
+            <span class="skill-tag">DaVinci Resolve</span>
+            <span class="skill-tag">Adobe After Effects</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Professional</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Team Leadership</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Customer Service</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Market Research</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Download -->
+  <section id="resume" class="section">
+    <div class="container" style="text-align:center;">
+      <p class="section-label">Resume</p>
+      <h2 class="section-title">Want the full picture?</h2>
+      <p class="section-subtitle">Download my resume for a complete look at my education, experience, and skills.</p>
+      <a href="Drew_Connell_Resume.pdf" download class="resume-card" style="display:inline-flex; text-decoration:none;">
+        <div class="resume-icon">📄</div>
+        <div class="resume-info">
+          <div class="resume-name">Drew_Connell_Resume.pdf</div>
+          <div class="resume-meta">Updated April 2026 · PDF</div>
+        </div>
+      </a>
+      <br/>
+      <a href="Drew_Connell_Resume.pdf" download class="btn-white">↓&nbsp; Download Resume</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-subtitle">I'm open to internships, opportunities, and conversations. Reach out through any of the channels below.</p>
+      <div class="contact-grid">
+        <a href="mailto:jd.connell31@gmail.com" class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-text">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">jd.connell31@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/drew-connell-95b554281" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">💼</div>
+          <div class="contact-text">
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value">drew-connell-95b554281</div>
+          </div>
+        </a>
+        <a href="https://github.com/jdcon31" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">🐙</div>
+          <div class="contact-text">
+            <div class="contact-label">GitHub</div>
+            <div class="contact-value">github.com/jdcon31</div>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/drewconnelll/" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">📸</div>
+          <div class="contact-text">
+            <div class="contact-label">Instagram</div>
+            <div class="contact-value">@drewconnelll</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Drew Connell · <a href="mailto:jd.connell31@gmail.com">jd.connell31@gmail.com</a></p>
+  </footer>
+
+</body>
+</html>
