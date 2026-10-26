@@ -141,6 +141,14 @@
     .project-desc { font-size: 0.95rem; color: var(--gray); flex: 1; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag { font-size: 0.75rem; font-weight: 500; background: var(--bg-soft); color: var(--navy); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid var(--border); }
+    .project-link { font-size: 0.88rem; font-weight: 600; color: var(--blue); }
+    .project-link:hover { text-decoration: underline; }
+    .live-badge {
+      display: inline-block; background: #dcfce7; color: #166534;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.15rem 0.55rem;
+      border-radius: 20px; margin-left: 0.5rem; vertical-align: middle;
+    }
     .projects-footer { margin-top: 2rem; text-align: center; }
     .projects-footer a { color: var(--blue); font-size: 0.92rem; font-weight: 600; }
     .projects-footer a:hover { text-decoration: underline; }
@@ -270,7 +278,7 @@
       <div class="about-grid">
         <div class="about-copy">
           <p>I'm an <span>Applied Mathematics &amp; Computer Science</span> student at the <span>University of Wisconsin–Stout</span>, concentrating in Artificial Intelligence Integration. I maintain a <span>3.40 GPA</span> and am on track to <span>graduate a semester early</span> in December 2027.</p>
-          <p>I'm the <span>Co-Founder and Technical Lead of View LLC</span>, where I own the engineering side of the business. I build the backend services, data pipelines, and LLM-driven tooling that our client work runs on.</p>
+          <p>I'm the <span>Co-Founder and Technical Lead of View LLC</span>, where I own the engineering side of the business. I build the backend services, data pipelines, and LLM-driven tooling that our client work runs on, and I ship products of my own, most recently <span>Organic</span>.</p>
           <p>Outside of that, I'm an <span>assistant coach</span> for UW–Stout Women's Soccer this season. I also competed collegiately as a <span>goalkeeper</span> for the men's program during my first two years, an experience that sharpened my discipline, composure under pressure, and ability to lead a team.</p>
         </div>
         <div class="stats-grid">
@@ -328,6 +336,22 @@
       </div>
 
       <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-icon">🌱</div>
+          <div>
+            <div class="project-title">Organic<span class="live-badge">Live</span></div>
+            <div class="project-period">2026 – Present</div>
+          </div>
+          <p class="project-desc">A self-serve product that writes and lays out social carousels and quote posts in a brand's own voice, aimed at accounts whose content currently reads as AI-generated. Split out of ContentStudio into a standalone product with its own Python and FastAPI backend, and shipped to a public URL rather than kept internal.</p>
+          <a href="https://getorganic.app" target="_blank" rel="noopener" class="project-link">getorganic.app →</a>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">LLMs</span>
+            <span class="tag">SaaS</span>
+          </div>
+        </div>
 
         <div class="project-card">
           <div class="project-icon">⚙️</div>
@@ -395,7 +419,7 @@
             <div class="project-title">Warehouse Bin-Location System</div>
             <div class="project-period">Volvo of Lisle · 2022 – Present</div>
           </div>
-          <p class="project-desc">Designed the bin-location scheme for a parts department move into a new building, mapped roughly 2,000 SKUs to new locations, and loaded the location data into Reynolds &amp; Reynolds. Inventory variance dropped after the move, with fewer parts unaccounted for at count.</p>
+          <p class="project-desc">Designed the bin-location scheme for a parts department move into a new building, mapped roughly 2,000 SKUs to new locations, and loaded the location data into Reynolds &amp; Reynolds. The new scheme made the department's first physical inventory counts possible, which recovered roughly $18K in surplus inventory value across two years.</p>
           <div class="project-tags">
             <span class="tag">Systems Design</span>
             <span class="tag">Inventory Data</span>
@@ -409,7 +433,7 @@
             <div class="project-title">Amazon FBA Storefront</div>
             <div class="project-period">2024 – 2025</div>
           </div>
-          <p class="project-desc">Launched and managed an Amazon FBA storefront end to end. Conducted market and competitor research to identify profitable niches, managed inventory logistics, and optimized pricing strategy against margin targets.</p>
+          <p class="project-desc">Launched and managed an Amazon FBA storefront end to end. Conducted market and competitor research to identify profitable niches, managed inventory logistics, and optimized pricing against margin targets, generating roughly $1,500 in revenue across about 30 units sold. Wound it down after concluding the margins were too thin to scale.</p>
           <div class="project-tags">
             <span class="tag">E-Commerce</span>
             <span class="tag">Market Research</span>
@@ -491,7 +515,7 @@
         <div class="resume-icon">📄</div>
         <div class="resume-info">
           <div class="resume-name">Drew_Connell_Resume.pdf</div>
-          <div class="resume-meta">Updated September 2026 · PDF</div>
+          <div class="resume-meta">Updated October 2026 · PDF</div>
         </div>
       </a>
       <br/>
